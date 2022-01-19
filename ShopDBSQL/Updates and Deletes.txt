@@ -1,0 +1,67 @@
+Insert Into orderLine(orderID, productID) values (12,7);
+Insert Into orderLine(orderID, productID) values (12,8);
+Insert Into orderLine(orderID, productID) values (13,8);
+
+insert into orders (userID, OrderDate) VAlues (7, now());
+insert into orders (userID, OrderDate) VAlues (8, now());
+insert into orders (userID, OrderDate) VAlues (9, now());
+
+Insert Into Products (Name, Description, Stock, price) Values('kindle', 'Electrical Item (Light & Fragile)', 10, 150.99);
+Insert Into Products (Name, Description, Stock, price) Values('Echo Dot', ' Electrical Item (Light)', 10, 100.99);
+
+insert into Users(LastName, FirstName, Address, City, Postcode) 
+VALUES ('Mitche', 'John', '18 Highbury' , 'London', 'NL123SG');
+insert into Users(LastName, FirstName, Address, CIty, Postcode) 
+VALUES ('Smart', 'Gary', '1 Mind The Gap Lane' , 'London', 'NW478LD');
+
+select * from orderLine;
+select * from users;
+
+SET SQL_SAFE_UPDATES=0;
+update users
+set lastname = 'Terry'
+where lastname = 'mitche';
+
+update users
+set address = '5 Mind The Gap Lane '
+where lastname = 'Smart';
+
+update products
+set price = 70.00
+where name = 'kindle';
+
+update products
+set name = 'Echo Show'
+where name = 'Echo Dot';
+
+update orders
+set userid = 8
+where userid = 9;
+
+update orders
+set userid = 9
+where userid = 7;
+
+update orderline
+set productid = 7
+where orderid = 13;
+
+update orderline
+set productid = 6
+where orderid = 12 and productid = 7;
+
+DELETE FROM orderline WHERE orderid = 8;
+DELETE FROM orderline WHERE orderid = 9;
+DELETE FROM orderline WHERE orderid = 7;
+
+DELETE FROM orders WHERE userid = 8;
+DELETE FROM orders WHERE userid = 9;
+
+
+DELETE FROM products WHERE name = 'kindle';
+DELETE FROM products WHERE name = 'Echo Show';
+
+DELETE FROM Users WHERE Lastname = 'Smart';
+DELETE FROM Users WHERE Lastname = 'Terry';
+
+SET SQL_SAFE_UPDATES=1;

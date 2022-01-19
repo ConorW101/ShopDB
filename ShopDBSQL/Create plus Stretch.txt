@@ -1,0 +1,46 @@
+CREATE TABLE Users(
+    UserID int Not Null auto_increment,
+    LastName varchar(50) Not Null,
+    FirstName varchar(50) Not Null,
+    Address varchar(50) Not Null,
+    City varchar(50) Not Null,
+    Postcode varchar(8) Not Null,
+	PRIMARY KEY (UserID)
+
+);
+CREATE TABLE Products (
+    ProductID int Not Null auto_increment,
+    Name varchar(50) Not Null,
+    Description varchar(100) Not Null,
+    Stock int Not Null,
+	price double NOT NULL,
+    PRIMARY KEY (ProductID)
+);
+
+CREATE TABLE Orders (
+    orderID int Not Null auto_increment,
+    userID int Not Null,
+    OrderDate datetime Not Null,
+	PRIMARY KEY (OrderID),
+    FOREIGN KEY (userID) references Users(UserID));
+    
+CREATE TABLE OrderLine(
+    orderLineID int Not Null auto_increment,
+    orderID int Not Null,
+    productID int NOT NULL,
+	PRIMARY KEY (orderLineID),
+    FOREIGN KEY (orderID) references Orders(orderID),
+    FOREIGN KEY (productID) references Products(productID))
+	
+#Stretch task
+	
+CREATE TABLE Reviews(
+    reviewID int Not Null auto_increment,
+    UserID int Not Null,
+    productID int Not Null,
+    rating int Not Null,
+    reveiwDesc varchar(500),
+	PRIMARY KEY (reviewID),
+    foreign Key (UserID) references users(UserID),
+    foreign Key (productId) references products(productID)
+);

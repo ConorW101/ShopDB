@@ -1,0 +1,55 @@
+
+
+Select concat(u.firstName, ' ', u.Lastname) as FullName, p.Name from Users u 
+Join orders o on o.userID = u.Userid 
+join orderLine ol on ol.orderID = o.orderID
+join products p on p.productid = ol.productId;
+
+select City from Users u 
+Join orders o on o.userID = u.Userid 
+join orderLine ol on ol.orderID = o.orderID
+join products p on p.productid = ol.productId where p.name = 'Switch';
+
+select concat(u.firstName, ' ', u.Lastname) as FullName, 
+count(LastName) as numOfProductsOrdered 
+from Users u 
+Join orders o on o.userID = u.Userid 
+join orderLine ol on ol.orderID = o.orderID
+join products p on p.productid = ol.productId
+group by u.lastname ;
+
+select * from products where stock <8;
+
+select * from products where price > 220 order by price desc;
+
+select p.Name, count(ol.ProductID) as MostPopular from orders o 
+join orderLine ol on ol.orderID = o.orderID
+join products p on p.productid = ol.productId
+group by ol.productid order by MostPopular desc;
+
+select * from users where City = 'London';
+
+select * from Users u 
+Join orders o on o.userID = u.Userid 
+join orderLine ol on ol.orderID = o.orderID
+join products p on p.productid = ol.productId where p.name LIKE 'P%';
+
+
+Select u.city, count(city) as Orders from Users u 
+Join orders o on o.userID = u.Userid 
+join orderLine ol on ol.orderID = o.orderID
+join products p on p.productid = ol.productId
+group by u.city
+order by orders asc;
+
+Select * from Users u 
+Join orders o on o.userID = u.Userid 
+join orderLine ol on ol.orderID = o.orderID
+join products p on p.productid = ol.productId
+where o.orderID = 4;
+
+
+
+
+
+
