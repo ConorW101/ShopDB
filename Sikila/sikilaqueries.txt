@@ -1,0 +1,77 @@
+use sakila;
+select * from actor;
+
+select last_name from actor where first_name = 'john';
+
+select * from actor where last_name = 'Neeson';
+
+select * from actor where actor_ID % 10 = 0;
+
+select description from film where film_id = 100;
+
+select title from film where rating = 'r';
+
+select title from film where rating != 'r';
+
+select * from film order by length asc limit 10;
+
+select title from film where length = 185;
+
+select title from film where special_features LIKE '%Deleted Scenes';
+
+SELECT last_name, count(last_name)
+FROM actor 
+group by last_name
+HAVING count(last_name) = 1
+order by last_name desc;
+
+SELECT last_name, count(last_name) as frequency
+FROM actor 
+group by last_name
+HAVING count(last_name) > 1
+order by frequency desc;
+
+select concat(first_name, ' ', last_name) as Fullname, count(fa.actor_id) as count from actor a 
+join film_actor fa on fa.actor_id = a.actor_id 
+join film f on f.film_id = fa.film_id
+group by fa.actor_id
+order by count desc
+limit 1;
+
+select avg(length) as averageRuntime
+from film;
+
+select avg(length), c.name as averageRuntime
+from film f join film_category fc on fc.film_id = f.film_id
+join category c on c.category_id = fc.category_id
+group by c.name
+;
+
+select * from film where description Like '%robot%';
+
+select * from film where release_year = 2010 ;
+
+select release_year, count(release_year) as count from film
+group by release_year;
+
+select title from film f join film_category fc on fc.film_id = f.film_id
+join category c on c.category_id = fc.category_id
+where c.name = 'Horror';
+
+select concat(first_name, ' ', last_name) as FullName from staff where staff_id = 2;
+
+select * from film f join film_actor fa on f.film_id = fa.film_id join actor a on a.actor_id = fa.actor_id
+where a.last_name = 'costner' and a.first_name = 'fred';
+
+select count(distinct country) from country;
+
+select name from language order by name asc;
+
+select concat(first_name, ' ', last_name) as FullName from actor where last_name Like '%son'
+order by first_name asc;
+
+select c.name, count(c.name) as amount from film f join film_category fc on fc.film_id = f.film_id
+join category c on c.category_id = fc.category_id
+group by c.name
+order by amount desc
+limit 1
